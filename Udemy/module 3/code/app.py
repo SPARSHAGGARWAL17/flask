@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask, request, make_response
 from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT,jwt_required
 from security import authenticate,identity
@@ -51,7 +51,11 @@ class Item(Resource):
 
 class ItemList(Resource):
     def get(self):
-        return {'items':items}
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add('Access-Control-Allow-Headers', "*")
+        response.headers.add('Access-Control-Allow-Methods', "*")
+        return {'items':items} , 200
 
 api.add_resource(Item,'/item/<string:name>')
 api.add_resource(ItemList,'/items')
