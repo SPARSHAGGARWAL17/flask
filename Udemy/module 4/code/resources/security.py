@@ -1,8 +1,6 @@
 from resources.user import UserModal
 from werkzeug.security import safe_str_cmp
-users = [
-    UserModal(1,'bob','bob_pass')
-]
+
 
 # users = [
 #     {
